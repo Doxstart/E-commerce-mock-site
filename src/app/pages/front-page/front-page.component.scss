@@ -13,14 +13,21 @@ body{
   flex-direction: row;
   flex-grow: 5;
   flex-wrap: 1;
-  order: 1;
-  overflow:visible;
 }
 
 img{
   object-fit: contain;
+  object-position: 0px 50%;
   width: 100%;
   max-width: fit-content;
-  height: auto;
+  max-height: fit-content;
+  height: 100%;
 }
 
+mat-card-title{
+  text-align: center;
+}
+
+mat-card-subtitle{
+  text-align: center;
+}

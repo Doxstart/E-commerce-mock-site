@@ -2,7 +2,7 @@
   <mat-card *ngFor="let product of products" class="front-element">
     <mat-card-title-group>
     <img mat-card-image src="{{product.image}}" alt="Image of Product" class="picture">
-    <mat-card-title><b>{{product.title}}</b></mat-card-title>
+    <mat-card-title><b>{{product.title | collapse}}</b></mat-card-title>
     <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
     <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
     <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
