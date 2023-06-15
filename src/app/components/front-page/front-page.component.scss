@@ -13,6 +13,8 @@ body{
   flex-direction: row;
   flex-grow: 5;
   flex-wrap: 1;
+  order: 1;
+  overflow:visible;
 }
 
 img{
