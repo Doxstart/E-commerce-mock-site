@@ -1,0 +1,24 @@
+body{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.front-element{
+  margin-top: 3px;
+  margin-bottom: 8px;
+  max-width: 300px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 5;
+  flex-wrap: 1;
+}
+
+img{
+  object-fit: contain;
+  width: 100%;
+  max-width: fit-content;
+  height: auto;
+}
+
