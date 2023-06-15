@@ -11,7 +11,8 @@ body{
   max-height: 300px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items:normal;
+  align-self: center;
   flex-direction: row;
   flex-grow: 5;
   flex-wrap: 1;
@@ -28,6 +29,7 @@ img{
 
 mat-card-title{
   text-align: center;
+
 }
 
 mat-card-subtitle{

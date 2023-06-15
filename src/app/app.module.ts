@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { FrontPageComponent } from './pages/front-page/front-page.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -38,7 +39,8 @@ import { CollapsePipe } from './pipes/collapse.pipe';
     MatListModule,
     HttpClientModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    SearchBarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
