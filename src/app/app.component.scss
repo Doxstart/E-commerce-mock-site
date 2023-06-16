@@ -21,11 +21,11 @@
   height: fit-content;
 }
 
-.s-cont{
-  padding-bottom: 20px;
-}
-
 .spacer{
   flex-grow: 1;
 }
 
+app-sidebar{
+  position: sticky;
+  top: 0%;
+}

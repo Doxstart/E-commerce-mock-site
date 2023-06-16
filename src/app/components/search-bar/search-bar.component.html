@@ -1,6 +1,3 @@
-<!-- <div> -->
-  <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
-<!-- </div> -->
 <mat-form-field class="s-filter-btn">
   <input matInput type="text" placeholder="Search" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
   <button *ngIf="enteredSearchValue" matSuffix mat-icon-button aria-label="Clear" (click)="enteredSearchValue = '' ">
@@ -11,6 +8,7 @@
 <mat-form-field>
   <mat-label>Filter By</mat-label>
   <mat-select>
+    <mat-option>Default</mat-option>
     <mat-option>Starts with</mat-option>
     <mat-option>Ends with</mat-option>
     <mat-option>Equal to</mat-option>
