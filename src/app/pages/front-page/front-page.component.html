@@ -1,9 +1,7 @@
+<app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)"></app-search-bar>
 <body>
-  <!-- <div>
-  <app-sidebar></app-sidebar>
-  </div> -->
   <mat-card *ngFor="let product of products" class="front-element">
-    <mat-card-title-group>
+    <mat-card-title-group *ngIf="searchText === ''|| product.title.toLowerCase().includes(searchText)">
     <img mat-card-image src="{{product.image}}" alt="Image of Product" class="picture">
     <mat-card-title><b>{{product.title | collapse}}</b></mat-card-title>
     <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>

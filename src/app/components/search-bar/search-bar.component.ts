@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,11 +12,10 @@ import { FormsModule } from '@angular/forms';
 export class SearchBarComponent implements OnInit {
   enteredSearchValue: string = "";
 
+  @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   onSearchTextChanged(){
     this.searchTextChanged.emit(this.enteredSearchValue);

@@ -2,6 +2,7 @@ body{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  padding-top: 20px;
 }
 
 .front-element{
@@ -34,4 +35,9 @@ mat-card-title{
 
 mat-card-subtitle{
   text-align: center;
+}
+
+.s-b-front{
+  display: flex;
+  justify-content: center;
 }

@@ -11,6 +11,8 @@ export class FrontPageComponent implements OnInit{
 
   products: Products[] = [];
 
+  searchText: string = "";
+
   constructor(public connService: ConnectionService){}
 
   ngOnInit(): void {
@@ -18,6 +20,11 @@ export class FrontPageComponent implements OnInit{
       next: data => this.products = data as any as Products[],
       error: err => console.log(err)
     })
+  }
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText);
   }
 
 }

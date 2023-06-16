@@ -1,8 +1,31 @@
 .container{
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-self: center;
+  flex-wrap: nowrap;
 }
 
 .mat-app-background{
   height: max-content;
+}
+
+.s-b-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  padding-bottom: 20px;
+  width: max-content;
+  height: fit-content;
+}
+
+.s-cont{
+  padding-bottom: 20px;
+}
+
+.spacer{
+  flex-grow: 1;
 }
 
