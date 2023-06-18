@@ -1,18 +1,18 @@
-<mat-form-field class="s-filter-btn">
-  <input matInput type="text" placeholder="Search" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
-  <button *ngIf="enteredSearchValue" matSuffix mat-icon-button aria-label="Clear" (click)="enteredSearchValue = '' ">
+<mat-form-field class="s-filter-btn" appearance="outline">
+  <input matInput type="text" placeholder="Search" [(ngModel)]="searchQuery" (ngModelChange)="onSearchTextChanged()">
+  <!-- <button *ngIf="enteredSearchValue" matSuffix mat-icon-button aria-label="Clear" (click)="enteredSearchValue = ''">
     <mat-icon>close</mat-icon>
-  </button>
+  </button> -->
 </mat-form-field>
 <span class="spacer"></span>
-<mat-form-field>
-  <mat-label>Filter By</mat-label>
-  <mat-select>
-    <mat-option>Default</mat-option>
-    <mat-option>Starts with</mat-option>
-    <mat-option>Ends with</mat-option>
-    <mat-option>Equal to</mat-option>
-    <mat-option>Includes</mat-option>
+<mat-form-field  appearance="outline">
+  <!-- <mat-label>Filter By</mat-label> -->
+  <mat-select placeholder="Filter By">
+    <mat-option>None</mat-option>
+    <mat-option value="Starts with">Starts with</mat-option>
+    <mat-option value="Ends with">Ends with</mat-option>
+    <mat-option value="Equal to">Equal to</mat-option>
+    <mat-option value="Includes">Includes</mat-option>
   </mat-select>
 </mat-form-field>
 
