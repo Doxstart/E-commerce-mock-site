@@ -1,9 +1,9 @@
-<app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)"></app-search-bar>
+<app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)" (fireFilterEvent)="onFilterBySelected($event)" (fireOnClickFilterEvent)="onFilter($event)"></app-search-bar>
 <body>
   <mat-card *ngFor="let product of products" class="front-element">
     <mat-card-title-group *ngIf="searchText === ''|| product.title.toLowerCase().includes(searchText)">
     <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
-    <mat-card-title><b>{{product.title | collapse}}</b></mat-card-title>
+    <mat-card-title><b>{{product.title}}</b></mat-card-title>
     <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
     <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
     <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>

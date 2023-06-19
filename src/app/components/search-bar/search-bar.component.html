@@ -1,11 +1,11 @@
 <body>
   <mat-form-field class="input-cont" appearance="outline">
     <input matInput autofocus type="text" placeholder="Search" [(ngModel)]="searchQuery"
-      (ngModelChange)="onSearchTextChanged()">
+      (keyup)="onSearchTextChanged()">
   </mat-form-field>
   <span class="spacer"></span>
   <mat-form-field appearance="outline" class="select-cont">
-    <mat-select placeholder="Filter By">
+    <mat-select placeholder="Filter By" [(ngModel)]="filterQuery" (keyup)="onFilterEvent()" (keyup)="onClickFilterEvent()" (keyup)="onFilterSelected()">
       <mat-option>None</mat-option>
       <mat-option value="Starts with">Starts with</mat-option>
       <mat-option value="Ends with">Ends with</mat-option>

@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConnectionService } from 'src/app/services/connection.service';
+import { Products } from 'src/app/models/products';
 
 @Component({
   selector: 'app-search-bar',
@@ -20,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
   searchQuery: string = '';
 
   filterQuery: string = '';
@@ -28,35 +30,30 @@ export class SearchBarComponent implements OnInit {
   @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit(): void {}
+  @Output()
+  fireFilterEvent : EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  fireOnClickFilterEvent : EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(public connServ: ConnectionService){}
 
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.searchQuery);
   }
 
+  onFilterEvent(){
+    this.fireFilterEvent.emit(this.filterQuery);
+  }
 
+  onClickFilterEvent(){
+    this.searchTextChanged.emit(this.searchQuery);
+    this.fireFilterEvent.emit(this.filterQuery);
+    this.fireOnClickFilterEvent.emit();
+  }
 
-  // applyFilterBy(searchQuery: string) {
-  //   if (searchQuery === 'starts with') {
-  //     const inputValue = this.searchQuery as any as Array<any>
-  //     const filteredStrings = inputValue.filter((str: string) =>
-  //       str.startsWith(searchQuery)
-  //     );
-  //   } else if (searchQuery === 'ends with') {
-  //     const inputValue = this.searchQuery as any as Array<any>
-  //     const filteredStrings = inputValue.filter((str: string) =>
-  //       str.endsWith(searchQuery)
-  //     );
-  //   } else if (searchQuery === 'equals to') {
-  //     const inputValue = this.searchQuery as any as Array<any>
-  //     const filteredStrings = inputValue.filter((str: string) => str === searchQuery);
-  //   } else if (searchQuery === 'includes') {
-  //     const inputValue = this.searchQuery as any as Array<any>
-  //     const filteredStrings = inputValue.filter((str: string | string[]) =>
-  //       str.includes(searchQuery)
-  //     );
-  //   }
+  onFilterSelected(){
+    this.onClickFilterEvent();
+  }
 
-  //   this.applyFilterBy.next(this.filteredResult);
-  // }
 }
