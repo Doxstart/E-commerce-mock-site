@@ -1,8 +1,20 @@
-.s-filter-btn{
+body{
+  padding-bottom: 15px;
+}
+
+.input-cont{
   width: 350px;
+  height: 55px;
+  background-color: gray;
+  margin-right: 20px;
 }
 
 .spacer{
   flex-grow: 0.1;
+}
+
+.select-cont{
+  background-color: gray;
+  height: 55px;
 }
 

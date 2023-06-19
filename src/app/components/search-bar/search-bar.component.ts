@@ -21,19 +21,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-  @Input() searchQuery: string = '';
+  searchQuery: string = '';
+
+  filterQuery: string = '';
 
   @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
-
-  @Output()
-  filteredResult = new EventEmitter<string[]>();
 
   ngOnInit(): void {}
 
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.searchQuery);
   }
+
+
 
   // applyFilterBy(searchQuery: string) {
   //   if (searchQuery === 'starts with') {
