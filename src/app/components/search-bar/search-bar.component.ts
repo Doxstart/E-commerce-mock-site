@@ -25,35 +25,25 @@ import { Products } from 'src/app/models/products';
 export class SearchBarComponent {
   searchQuery: string = '';
 
-  filterQuery: string = '';
+  selectedFilter: string ='';
 
   @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  fireFilterEvent : EventEmitter<string> = new EventEmitter<string>();
-
-  @Output()
-  fireOnClickFilterEvent : EventEmitter<string> = new EventEmitter<string>();
+  selectedChoice: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public connServ: ConnectionService){}
 
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.searchQuery);
+    console.log(this.searchQuery);
+
   }
 
-  onFilterEvent(){
-    this.fireFilterEvent.emit(this.filterQuery);
-  }
-
-  onClickFilterEvent(){
-    this.searchTextChanged.emit(this.searchQuery);
-    this.fireFilterEvent.emit(this.filterQuery);
-    this.fireOnClickFilterEvent.emit();
-  }
-
-  onFilterSelected(){
-    this.onClickFilterEvent();
+  filterBySelect(){
+    this.selectedChoice.emit(this.selectedFilter);
+    console.log(this.selectedFilter);
   }
 
 }

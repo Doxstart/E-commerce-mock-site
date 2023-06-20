@@ -13,7 +13,7 @@ export class FrontPageComponent implements OnInit{
 
   searchText: string = "";
 
-  filteredResults: string = "";
+  filterBy: string ="";
 
   constructor(public connServ: ConnectionService){}
 
@@ -28,38 +28,8 @@ export class FrontPageComponent implements OnInit{
     this.searchText = searchValue;
   }
 
-  onFilterBySelected(selectedFilter: string){
-    this.filteredResults = selectedFilter;
-  }
-
-  onFilter(filterBy: string){
-
-    this.filteredResults = filterBy;
-
-    if (this.filteredResults === "Starts with") {
-      this.connServ.filterByStartsWith(this.filteredResults).subscribe({
-        next: element => this.products = element as any as Products[],
-        error: err => console.log(err)
-      });
-    }
-    if (this.filteredResults === "Ends with") {
-      this.connServ.filterByEndsWith(this.filteredResults).subscribe({
-        next: element => this.products = element as any as Products[],
-        error: err => console.log(err)
-      });
-    }
-    if (this.filteredResults === "Equal to") {
-      this.connServ.filterByEqualsTo(this.filteredResults).subscribe({
-        next: element => this.products = element as any as Products[],
-        error: err => console.log(err)
-      });
-    }
-    if (this.filteredResults === "Includes") {
-      this.connServ.filterByIncludes(this.filteredResults).subscribe({
-        next: element => this.products = element as any as Products[],
-        error: err => console.log(err)
-      });
-    }
+  onSelected(searchValue: string){
+    this.filterBy = searchValue;
   }
 
 }
