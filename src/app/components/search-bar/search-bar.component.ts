@@ -46,4 +46,9 @@ export class SearchBarComponent {
     console.log(this.selectedFilter);
   }
 
+  clearInputQuery(){
+    this.searchQuery = '';
+    this.onSearchTextChanged();
+  }
+
 }

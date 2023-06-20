@@ -7,7 +7,6 @@
     <ng-container *ngIf="searchText === ''|| product.title.toLowerCase().includes(searchText)">
       <!-- <div *ngIf="filterBy === 'Starts with' || product.title.toLowerCase().startsWith(searchText)"> -->
       <ng-container *ngIf="filterBy === 'Starts with' || product.title.toLowerCase().startsWith(searchText)">
-      <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
         <mat-card-title-group>
           <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
           <mat-card-title><b>{{product.title}}</b></mat-card-title>
@@ -28,9 +27,8 @@
         </mat-card-title-group>
       </ng-container> -->
 
-    </ng-container>
-
-</mat-card>
+    </mat-card>
+  </body>
 
   <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
         <mat-card-title-group>
@@ -63,4 +61,3 @@
       </ng-container> -->
 
 
-</body>
