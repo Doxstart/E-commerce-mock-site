@@ -7,6 +7,7 @@ body{
   height: 55px;
   background-color: gray;
   margin-right: 20px;
+  padding-top: 0;
 }
 
 .spacer{
@@ -16,5 +17,9 @@ body{
 .select-cont{
   background-color: gray;
   height: 55px;
+}
+
+button{
+  margin-left: 20px;
 }
 

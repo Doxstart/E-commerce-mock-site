@@ -1,13 +1,21 @@
 <app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)"
-  (selectedChoice)="onSelected($event)"></app-search-bar>
+  (selectedChoice)="onSelected($event)" (sortStyle)="updateStyle()"></app-search-bar>
 
 
-  <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
+
+<ng-container [ngTemplateOutlet]="myTemplate">
+
+    <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)"></ng-container>
+    <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase() === searchText"></ng-container>
+    <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase().includes(searchText)"></ng-container> -->
+</ng-container>
+
+
 
 <ng-template #myTemplate>
-<body>
+<body  [style.flex-flow]="flexFlow">
   <mat-card *ngFor="let product of products" class="front-element">
-    <ng-container *ngIf="searchText === ''|| product.title.toLowerCase().includes(searchText.toLowerCase())">
+    <ng-container *ngIf="searchText === '' || product.title.toLowerCase().includes(searchText.toLowerCase())">
             <mat-card-title-group>
               <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
               <mat-card-title><b>{{product.title}}</b></mat-card-title>
@@ -16,9 +24,10 @@
               <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
             </mat-card-title-group>
           </ng-container>
-</mat-card>
+  </mat-card>
 </body>
 </ng-template>
+
 <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
   <mat-card-title-group>
           <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">

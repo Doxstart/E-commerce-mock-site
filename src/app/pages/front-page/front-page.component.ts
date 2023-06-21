@@ -15,7 +15,7 @@ export class FrontPageComponent implements OnInit{
 
   filterBy: any = "";
 
-  @Input() filteredData: any[] = [];
+  flexFlow = 'row wrap';
 
   constructor(public connServ: ConnectionService){}
 
@@ -23,7 +23,7 @@ export class FrontPageComponent implements OnInit{
     this.connServ.getProducts().subscribe({
       next: data => this.products = data as any as Products[],
       error: err => console.log(err)
-    })
+    });
   }
 
   onSearchTextEntered(searchValue: string){
@@ -34,5 +34,8 @@ export class FrontPageComponent implements OnInit{
     this.filterBy = searchValue;
   }
 
+  updateStyle(){
+    this.flexFlow = (this.flexFlow === 'row wrap')? 'row-reverse wrap-reverse' : 'row wrap';
+  }
 
 }
