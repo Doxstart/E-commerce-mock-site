@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConnectionService } from 'src/app/services/connection.service';
-import { Products } from 'src/app/models/products';
 
 @Component({
   selector: 'app-search-bar',
@@ -23,9 +22,11 @@ import { Products } from 'src/app/models/products';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent {
-  searchQuery: string = '';
+  @Input() searchQuery: any = '';
 
-  selectedFilter: string ='';
+  @Input() selectedFilter: any = '';
+
+  filteredResults: any[] = [];
 
   @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
@@ -42,9 +43,24 @@ export class SearchBarComponent {
   }
 
   filterBySelect(){
-    this.selectedChoice.emit(this.selectedFilter);
-    console.log(this.selectedFilter);
+    this.filteredResults = [];
+    if (this.selectedFilter === 'starts-with') {
+      this.filteredResults = this.searchQuery.filter((item: string) => item.startsWith(this.searchQuery));
+    } else if (this.selectedFilter === 'ends-with') {
+      this.filteredResults = this.searchQuery.filter((item: string) => item.endsWith(this.searchQuery));
+    } else if (this.selectedFilter === 'equal-to') {
+      this.filteredResults = this.searchQuery.filter((item: any) => item === this.searchQuery);
+    } else if (this.selectedFilter === 'includes') {
+      this.filteredResults = this.searchQuery.filter((item: string | any[]) => item.includes(this.searchQuery));
+    }
+    // this.selectedChoice.emit(this.selectedFilter);
+    // console.log(this.selectedFilter);
   }
+
+  // filterBySelect(){
+  //   this.selectedChoice.emit(this.selectedFilter);
+  //   console.log(this.selectedFilter);
+  // }
 
   clearInputQuery(){
     this.searchQuery = '';
