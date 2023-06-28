@@ -1,14 +1,13 @@
 <app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)"
   (selectedChoice)="onSelected($event)" (sortStyle)="updateStyle()"></app-search-bar>
 
+  <ng-container [ngTemplateOutlet]="myTemplate"></ng-container>
 
 
-<ng-container [ngTemplateOutlet]="myTemplate">
 
     <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)"></ng-container>
     <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase() === searchText"></ng-container>
     <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase().includes(searchText)"></ng-container> -->
-</ng-container>
 
 
 
