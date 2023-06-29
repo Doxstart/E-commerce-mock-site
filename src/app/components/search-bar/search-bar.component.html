@@ -8,12 +8,8 @@
   <span class="spacer"></span>
   <mat-form-field appearance="outline" class="select-cont">
     <mat-label>Filter By</mat-label>
-    <mat-select [(ngModel)]="selectedFilter">
-      <mat-option (click)="filterBySelect()">None</mat-option>
-      <mat-option (click)="filterBySelect()" value="Starts with">Starts with</mat-option>
-      <mat-option (click)="filterBySelect()" value="Ends with">Ends with</mat-option>
-      <mat-option (click)="filterBySelect()" value="Equal to">Equal to</mat-option>
-      <mat-option (click)="filterBySelect()" value="Includes">Includes</mat-option>
+    <mat-select>
+      <mat-option *ngFor="let filters of selectedFilter">{{filters}}</mat-option>
     </mat-select>
   </mat-form-field>
   <button mat-mini-fab color="primary" (click)="onClick()">

@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConnectionService } from 'src/app/services/connection.service';
-import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-search-bar',
@@ -20,17 +19,17 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatDividerModule
   ],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBarComponent {
-  @Input() searchQuery: any = '';
+export class SearchBarComponent{
+  @Input() searchQuery: string = '';
 
-  @Input() selectedFilter: any = '';
+  @Input() selectedFilter: string[] = ['Starts-with', 'Ends-with', 'Equal-to', 'Includes'];
 
-  filteredResults: any[] = [];
+
+  filteredResults: string[] = [];
 
   flexFlowStyle = 'row wrap';
 
@@ -48,26 +47,26 @@ export class SearchBarComponent {
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.searchQuery);
     console.log(this.searchQuery);
-
   }
 
   onFilteringBySelect(){
-    this.filteredResults = [];
-    if (this.selectedFilter === 'Starts-with') {
-      this.filteredResults = this.searchQuery.filter((item: string) => item.startsWith(this.searchQuery));
-    } else if (this.selectedFilter === 'Ends-with') {
-      this.filteredResults = this.searchQuery.filter((item: string) => item.endsWith(this.searchQuery));
-    } else if (this.selectedFilter === 'Equal-to') {
-      this.filteredResults = this.searchQuery.filter((item: any) => item === this.searchQuery);
-    } else if (this.selectedFilter === 'Includes') {
-      this.filteredResults = this.searchQuery.filter((item: any) => item.includes(this.searchQuery));
-    }
+    // this.filteredResults = [];
+    // if (this.selectedFilter === 'Starts-with') {
+    //   this.filteredResults = this.searchQuery.filter((item: string) => item.startsWith(this.searchQuery));
+    // } else if (this.selectedFilter === 'Ends-with') {
+    //   this.filteredResults = this.searchQuery.filter((item: string) => item.endsWith(this.searchQuery));
+    // } else if (this.selectedFilter === 'Equal-to') {
+    //   this.filteredResults = this.searchQuery.filter((item: any) => item === this.searchQuery);
+    // } else if (this.selectedFilter === 'Includes') {
+    //   this.filteredResults = this.searchQuery.filter((item: any) => item.includes(this.searchQuery));
+    // }
   }
 
-  filterBySelect(){
-    this.selectedChoice.emit(this.selectedFilter);
-    console.log(this.onFilteringBySelect());
-  }
+  // filterBySelect(){
+  //   this.selectedChoice.emit(this.selectedFilter);
+  //   console.log(this.onFilteringBySelect());
+  // }
+
 
   clearInputQuery(){
     this.searchQuery = '';
