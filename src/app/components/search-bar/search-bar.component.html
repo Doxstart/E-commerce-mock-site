@@ -1,15 +1,19 @@
 <body>
   <mat-form-field class="input-cont" appearance="outline">
-    <input matInput autofocus type="text" placeholder="Search" [(ngModel)]="searchQuery"
+    <input matInput autofocus type="text" placeholder="Search" [(ngModel)]="searchTerm"
       (keyup)="onSearchTextChanged()">
-    <button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="clearInputQuery()">
+    <button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="clearInputQuery()">
       <mat-icon>close</mat-icon></button>
   </mat-form-field>
   <span class="spacer"></span>
   <mat-form-field appearance="outline" class="select-cont">
     <mat-label>Filter By</mat-label>
     <mat-select>
-      <mat-option *ngFor="let filters of selectedFilter">{{filters}}</mat-option>
+      <mat-option (click)="onSelectingFilter('None')" value="None">None</mat-option>
+      <mat-option (click)="onSelectingFilter('Starts with')" value="Starts with">Starts with</mat-option>
+      <mat-option (click)="onSelectingFilter('Ends with')" value="Ends with">Ends with</mat-option>
+      <mat-option (click)="onSelectingFilter('Equal to')" value="Equal to">Equal to</mat-option>
+      <mat-option (click)="onSelectingFilter('Includes')" value="Includes">Includes</mat-option>
     </mat-select>
   </mat-form-field>
   <button mat-mini-fab color="primary" (click)="onClick()">

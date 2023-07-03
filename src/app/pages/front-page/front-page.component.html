@@ -1,19 +1,11 @@
 <app-search-bar class="s-b-front" (searchTextChanged)="onSearchTextEntered($event)"
-  (selectedChoice)="onSelected($event)" (sortStyle)="updateStyle()"></app-search-bar>
+(sortStyle)="updateStyle()"></app-search-bar>
 
   <ng-container [ngTemplateOutlet]="myTemplate"></ng-container>
 
-
-
-    <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)"></ng-container>
-    <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase() === searchText"></ng-container>
-    <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase().includes(searchText)"></ng-container> -->
-
-
-
 <ng-template #myTemplate>
 <body  [style.flex-flow]="flexFlow">
-  <mat-card *ngFor="let product of products" class="front-element">
+  <mat-card *ngFor="let product of products | filter:searchText:'title':filterBy" class="front-element">
     <ng-container *ngIf="searchText === '' || product.title.toLowerCase().includes(searchText.toLowerCase())">
             <mat-card-title-group>
               <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
@@ -26,50 +18,3 @@
   </mat-card>
 </body>
 </ng-template>
-
-<!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
-  <mat-card-title-group>
-          <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
-          <mat-card-title><b>{{product.title}}</b></mat-card-title>
-          <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
-          <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
-          <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
-        </mat-card-title-group>
-      </ng-container> -->
-
-
-  <!-- <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
-    <mat-card-title-group>
-      <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
-      <mat-card-title><b>{{product.title}}</b></mat-card-title>
-      <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
-          <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
-          <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
-        </mat-card-title-group>
-      </ng-container> -->
-
-      <!-- <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase().includes(searchText)">
-        <mat-card-title-group>
-          <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
-          <mat-card-title><b>{{product.title}}</b></mat-card-title>
-          <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
-          <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
-          <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
-        </mat-card-title-group>
-      </ng-container>
-
-      <ng-container *ngIf="filterBy === 'Includes' || product.title.toLowerCase().includes(searchText)">
-        <mat-card-title-group>
-          <img mat-card-image src={{product.image}} alt="Image of Product" class="picture">
-          <mat-card-title><b>{{product.title}}</b></mat-card-title>
-          <mat-card-subtitle>Category: {{product.category}}</mat-card-subtitle>
-          <mat-card-subtitle>Price: <b>{{product.price}}€</b></mat-card-subtitle>
-          <mat-card-subtitle>Description: {{product.description | collapse}}</mat-card-subtitle>
-        </mat-card-title-group>
-      </ng-container> -->
-
-      <!-- <ng-container *ngIf="filterBy === 'Starts with' || product.title.toLowerCase().startsWith(searchText)">
-      <ng-container *ngIf="filterBy === 'Ends with' || product.title.toLowerCase().endsWith(searchText)">
-      <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase() === searchText">
-      <ng-container *ngIf="filterBy === 'Equal to' || product.title.toLowerCase().includes(searchText)"> -->
-

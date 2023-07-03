@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -23,13 +23,10 @@ import { ConnectionService } from 'src/app/services/connection.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBarComponent{
-  @Input() searchQuery: string = '';
+export class SearchBarComponent implements OnInit {
+  searchTerm: string = '';
 
-  @Input() selectedFilter: string[] = ['Starts-with', 'Ends-with', 'Equal-to', 'Includes'];
-
-
-  filteredResults: string[] = [];
+  selectedFilter: string = '';
 
   flexFlowStyle = 'row wrap';
 
@@ -37,44 +34,37 @@ export class SearchBarComponent{
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  selectedChoice: EventEmitter<string> = new EventEmitter<string>();
-
-  @Output()
   sortStyle = new EventEmitter<void>();
 
-  constructor(public connServ: ConnectionService){}
+  constructor(public connServ: ConnectionService) {}
+
+  ngOnInit(): void {
+    this.connServ.search.subscribe((value: any) => {
+      this.searchTerm = value;
+    });
+
+    this.connServ.filter.subscribe((value: any) => {
+      this.selectedFilter = value;
+    });
+  }
 
   onSearchTextChanged() {
-    this.searchTextChanged.emit(this.searchQuery);
-    console.log(this.searchQuery);
+    this.searchTextChanged.emit(this.searchTerm);
+    console.log(this.searchTerm);
   }
 
-  onFilteringBySelect(){
-    // this.filteredResults = [];
-    // if (this.selectedFilter === 'Starts-with') {
-    //   this.filteredResults = this.searchQuery.filter((item: string) => item.startsWith(this.searchQuery));
-    // } else if (this.selectedFilter === 'Ends-with') {
-    //   this.filteredResults = this.searchQuery.filter((item: string) => item.endsWith(this.searchQuery));
-    // } else if (this.selectedFilter === 'Equal-to') {
-    //   this.filteredResults = this.searchQuery.filter((item: any) => item === this.searchQuery);
-    // } else if (this.selectedFilter === 'Includes') {
-    //   this.filteredResults = this.searchQuery.filter((item: any) => item.includes(this.searchQuery));
-    // }
+  onSelectingFilter(value: string){
+    this.selectedFilter = value;
+    this.connServ.filter.next(this.selectedFilter);
+    console.log(this.selectedFilter);
   }
 
-  // filterBySelect(){
-  //   this.selectedChoice.emit(this.selectedFilter);
-  //   console.log(this.onFilteringBySelect());
-  // }
-
-
-  clearInputQuery(){
-    this.searchQuery = '';
+  clearInputQuery() {
+    this.searchTerm = '';
     this.onSearchTextChanged();
   }
 
-  onClick(){
-    this.sortStyle.emit()
+  onClick() {
+    this.sortStyle.emit();
   }
-
 }

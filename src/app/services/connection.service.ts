@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Products } from '../models/products';
 
 @Injectable({
@@ -9,6 +9,10 @@ import { Products } from '../models/products';
 export class ConnectionService {
 
   readonly BASE_URL = "https://fakestoreapi.com/products";
+
+  public search = new BehaviorSubject<string>("");
+
+  public filter = new BehaviorSubject<string>("");
 
   constructor(private http: HttpClient) {}
 

@@ -19,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { CollapsePipe } from './pipes/collapse.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CollapsePipe } from './pipes/collapse.pipe';
     HeaderComponent,
     SidebarComponent,
     FrontPageComponent,
-    CollapsePipe
+    CollapsePipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

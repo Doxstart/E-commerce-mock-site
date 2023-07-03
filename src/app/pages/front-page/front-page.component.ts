@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/models/products';
 import { ConnectionService } from 'src/app/services/connection.service';
 
@@ -7,35 +7,38 @@ import { ConnectionService } from 'src/app/services/connection.service';
   templateUrl: './front-page.component.html',
   styleUrls: ['./front-page.component.scss'],
 })
-export class FrontPageComponent implements OnInit{
-
+export class FrontPageComponent implements OnInit {
   products: Products[] = [];
 
-  searchText: any = "";
+  searchText: any = '';
 
-  filterBy: any = "";
+  filterBy: any = '';
 
   flexFlow = 'row wrap';
 
-  constructor(public connServ: ConnectionService){}
+  constructor(public connServ: ConnectionService) {}
 
   ngOnInit(): void {
     this.connServ.getProducts().subscribe({
-      next: data => this.products = data as any as Products[],
-      error: err => console.log(err)
+      next: (data) => (this.products = data as any as Products[]),
+      error: (err) => console.log(err),
+    });
+
+    this.connServ.search.subscribe((value: any) => {
+      this.searchText = value;
+    });
+
+    this.connServ.filter.subscribe((value: any) => {
+      this.filterBy = value;
     });
   }
 
-  onSearchTextEntered(searchValue: string){
+  onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
   }
 
-  onSelected(searchValue: string){
-    this.filterBy = searchValue;
+  updateStyle() {
+    this.flexFlow =
+      this.flexFlow === 'row wrap' ? 'row-reverse wrap-reverse' : 'row wrap';
   }
-
-  updateStyle(){
-    this.flexFlow = (this.flexFlow === 'row wrap')? 'row-reverse wrap-reverse' : 'row wrap';
-  }
-
 }
